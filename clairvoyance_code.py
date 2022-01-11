@@ -2,14 +2,17 @@ import heapq
 
 n = int(input())
 bunny_cards = []
+tracker = [0]*(2*n+1)
 for i in range(n):
-    heapq.heappush(bunny_cards, int(input()))
+    card = int(input())
+    heapq.heappush(bunny_cards, card)
+    tracker[card]+=1
 bunny_cards = [heapq.heappop(bunny_cards) for i in range(n)]
 #print(bunny_cards)
 
 harry_cards = []
 for i in range(1, 2*n+1): 
-    if i not in bunny_cards: 
+    if tracker[i]==0: 
         harry_cards.append(i)
 
 max_b_points = 0
